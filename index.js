@@ -21,6 +21,22 @@ app.get("/comics", (req, res) => {
     });
 });
 
+app.get("/comics/:characterId", (req, res) => {
+  axios
+    .get(
+      `https://lereacteur-marvel-api.herokuapp.com/comics/${req.params.characterId}?apiKey=${process.env.API}`
+    )
+
+    .then((response) => {
+      let mainData = response.data;
+      //console.log(mainData);
+      res.json({ mainData });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
+
 app.get("/characters", (req, res) => {
   axios
     .get(
@@ -30,6 +46,22 @@ app.get("/characters", (req, res) => {
       let charactData = response.data;
       //console.log(mainData);
       res.json({ charactData });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
+
+app.get("/character/:characterId", (req, res) => {
+  axios
+    .get(
+      `https://lereacteur-marvel-api.herokuapp.com/character/${req.params.characterId}?apiKey=${process.env.API}`
+    )
+
+    .then((response) => {
+      let mainData = response.data;
+      //console.log(mainData);
+      res.json({ mainData });
     })
     .catch((error) => {
       console.log(error);
